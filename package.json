@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "description": "",
   "dependencies": {
-    "@ngrok/ngrok": "^1.4.1",
+    "@ngrok/ngrok": "^1.5.2",
     "@trustvc/trustvc": "^2.3.2",
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",

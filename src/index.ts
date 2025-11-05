@@ -12,7 +12,7 @@ import path from "path";
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Add middleware to parse JSON bodies
 app.use(express.json({ limit: '50mb' }));
@@ -38,6 +38,7 @@ const SUPPORTED_DOCUMENT: {
   [key: string]: string;
 } = {
   BILL_OF_LADING: "https://trustvc.io/context/bill-of-lading.json",
+  DOCUMENTS: "https://www.w3.org/2018/credentials/v1",
   // "INVOICE": "https://trustvc.io/context/invoice.json",
   // "CERTIFICATE_OF_ORIGIN": "https://trustvc.io/context/coo.json"
 }
@@ -76,6 +77,10 @@ app.post("/create/:documentId", async (req: Request, res: Response, next: NextFu
     const CHAINID: CHAIN_ID = process.env.NET as CHAIN_ID ?? CHAIN_ID.amoy;
     const CHAININFO = SUPPORTED_CHAINS[CHAINID];
     const RPC_PROVIDER_URL = CHAININFO.rpcUrl!
+
+    console.log('Chain ID:', CHAINID);
+    console.log('RPC URL:', RPC_PROVIDER_URL);
+    console.log('Token Registry:', SYSTEM_TOKEN_REGISTRY_ADDRESS);
     // Remove escaped characters before parsing
     const cleanedJsonString = process.env.DID_KEY_PAIRS.replace(/\\(?=["])/g, '');
     const DID_KEY_PAIRS = JSON.parse(cleanedJsonString);
@@ -111,7 +116,7 @@ app.post("/create/:documentId", async (req: Request, res: Response, next: NextFu
       id: "https://generic-templates.tradetrust.io",
       type: "EMBEDDED_RENDERER",
       templateName: documentId
-    }); 
+    });
 
 
     // Sign the document

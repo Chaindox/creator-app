@@ -26,7 +26,7 @@ const main = async () => {
     wallet
   )
   const initParam = v5Utils.encodeInitParams({
-    name: "DemoTokenRegistry",
+    name: "ChainDox Token Registry",
     symbol: "DTR",
     deployer: walletAddress,
   });
