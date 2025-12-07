@@ -1,9 +1,8 @@
-# Creator Tutorial
+# Creator app
 
 ## Overview
 
-TradeTrust Creator Tutorial is a guide to help developers understand and implement TradeTrust's document creation process. This tutorial provides step-by-step instructions for creating, deploying, and managing transferable documents using the TradeTrust framework.
-
+creator app is an API for Chaindox to create and verify the veriviable credentials. this app using Tradetrust Trust VC framework for MLETR SUPPORT
 ## Prerequisites
 
 - Node.js (v20 or higher)
@@ -49,9 +48,3 @@ npm run deploy:token-registry
 ```bash
 npm run dev
 ```
-
-## Related Projects
-
-- [Token Registry](https://github.com/TradeTrust/token-registry)
-- [TrustVC](https://github.com/TrustVC/trustvc)
-- [TradeTrust Website](https://github.com/TradeTrust/tradetrust-website)
