@@ -16,15 +16,21 @@
   "dependencies": {
     "@ngrok/ngrok": "^1.5.2",
     "@trustvc/trustvc": "^2.3.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "install": "^0.13.0",
+    "npm": "^11.7.0"
   },
   "engines": {
     "npm": ">=8.3.0",
     "node": ">=20"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^4.17.21",
     "@types/node": "^22.13.1",
     "concurrently": "^9.1.2",
