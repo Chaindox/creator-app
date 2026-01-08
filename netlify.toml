@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/.well-known/did.json"
+  to = "/.netlify/functions/did"
+  status = 200
+
+[[redirects]]
+  from = "/verify"
+  to = "/.netlify/functions/verify"
+  status = 200
+
+[[redirects]]
+  from = "/create/:documentId"
+  to = "/.netlify/functions/create"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 3001
