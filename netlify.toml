@@ -1,7 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "echo 'No build needed for serverless functions'"
   functions = "netlify/functions"
-  publish = "dist"
+  publish = "public"
 
 [functions]
   node_bundler = "esbuild"
