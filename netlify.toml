@@ -1,11 +1,12 @@
 [build]
-  command = "echo 'No build needed for serverless functions'"
+  command = "npm install --production=false"
   functions = "netlify/functions"
   publish = "public"
 
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@trustvc/trustvc", "ethers"]
+  external_node_modules = ["@trustvc/**", "@digitalbazaar/**", "ethers", "crypto"]
+  included_files = ["node_modules/@trustvc/**", "node_modules/@digitalbazaar/**", "node_modules/ethers/**"]
 
 [[redirects]]
   from = "/.well-known/did.json"
