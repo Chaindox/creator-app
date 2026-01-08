@@ -5,6 +5,7 @@
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["@trustvc/trustvc", "ethers"]
 
 [[redirects]]
   from = "/.well-known/did.json"
