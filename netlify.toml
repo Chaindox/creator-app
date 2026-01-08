@@ -4,9 +4,8 @@
   publish = "public"
 
 [functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["@trustvc/**", "@digitalbazaar/**", "ethers", "crypto"]
-  included_files = ["node_modules/@trustvc/**", "node_modules/@digitalbazaar/**", "node_modules/ethers/**"]
+  node_bundler = "nft"
+  included_files = ["node_modules/**"]
 
 [[redirects]]
   from = "/.well-known/did.json"
