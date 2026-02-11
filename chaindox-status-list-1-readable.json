@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://w3id.org/security/data-integrity/v2"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "BitstringStatusListCredential"
+  ],
+  "issuer": "did:web:chaindox.com",
+  "validFrom": "2026-02-11T09:31:40.119Z",
+  "credentialSubject": {
+    "id": "https://chaindox.com/credentials/status/1#list",
+    "type": "BitstringStatusList",
+    "statusPurpose": "revocation",
+    "encodedList": "H4sIAAAAAAAAA-3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA"
+  },
+  "id": "urn:uuid:019c4c0a-d038-7ee4-8132-abc2cfbd9722",
+  "proof": {
+    "type": "DataIntegrityProof",
+    "created": "2026-02-11T09:31:43Z",
+    "verificationMethod": "did:web:chaindox.com#keys-1",
+    "cryptosuite": "ecdsa-sd-2023",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "u2V0AhVhA9-fQFVtrQirnSP-LRvV0ANWiFAkdxkQQUOB8K-7xgNZVXs9FFFUo1oEv5YwLPWrFmPWETELj2iNpoUXJK-EYw1gjgCQCJvrkBJ4YKY7SXJ8jx6oFJF454c30MNi7L5pVGq4uEhZYII3pTzDeg8n2KgH18jvATFAqOwT5kgje_FTi_fkNrrUlhFhAzaguI4gqo5xoGm5f_bldvJPqtZQ_9JksrE-UYjeu2KIIVkkNqjxUrh1UJEQwjjpUMzjQvBPmCrgoXvwZnFTH11hAd4ksnCTeWbfOpz-JOLJ30LR6lJCihzMmI4q5E8BGoqozUejhQ0S9XV9dvJIMLYCPLnV-0BpnEeqVl6ict1iSHFhAsxmyczf4flg6GnOVuzKoGUjVi9ywcIiM5WGAgE5sKCwocuFpJ3-YJYO2kK1kM_J5VwMBe7Da5GMeEdkpglptn1hAWP_JQ66kTIIumW2QpbT2lbEiYXlhehATZznmpaLkQ_z-BYcCnTwbUSCnENGngXx88ztK8eTnxmh0GN_zOen__4JnL2lzc3VlcmovdmFsaWRGcm9t"
+  }
+}
