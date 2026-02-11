@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon",
     "script:generateDidWeb": "dotenv -e .env npx ts-node ./scripts/generateDidWeb.ts",
-    "script:deployTokenRegistry": "dotenv -e .env npx ts-node ./scripts/deployTokenRegistry.ts"
+    "script:deployTokenRegistry": "dotenv -e .env npx ts-node ./scripts/deployTokenRegistry.ts",
+    "script:createStatus": "dotenv -e .env npx ts-node ./scripts/generateCredentialStatus.ts"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -17,7 +18,7 @@
     "@ngrok/ngrok": "^1.5.2",
     "@trustvc/trustvc": "^2.3.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.6.1",
     "ethers": "^6.13.5",
     "express": "^4.21.2",
     "express-rate-limit": "^8.2.1",

@@ -100,7 +100,33 @@ const SUPPORTED_DOCUMENT: {
   CERTIFICATE_OF_ORIGIN: "https://chaindox.com/contexts/coo-context.json",
   INVOICE: "https://chaindox.com/contexts/invoice-context.json",
   WAREHOUSE_RECEIPT: "https://chaindox.com/contexts/warehouse-context.json",
-  ELECTRONIC_PROMISSORY_NOTE: "https://chaindox.com/contexts/electronic.json"
+  ELECTRONIC_PROMISSORY_NOTE: "https://chaindox.com/contexts/electronic.json",
+  CARGO_INSURANCE: "https://chaindox.com/contexts/cargo-insurance-context.json",
+  SHIPPER_LETTER_OF_INSTRUCTIONS: "https://chaindox.com/contexts/shipper-letter-of-instructions.json",
+  PACKING_LIST: "https://chaindox.com/contexts/packing-list-context.json",
+  SEA_WAYBILL: "https://chaindox.com/contexts/sea-waybill-context.json",
+  SHIP_DELEVERY_ORDER: "https://chaindox.com/contexts/ship-delevery-order.json",
+  AIR_WAYBILL: "https://chaindox.com/contexts/air-waybill.json",
+  SEA_CARGO_MANIFEST: "https://chaindox.com/contexts/sea-cargo-manifest.json",
+  AIR_CARGO_MANIFEST: "https://chaindox.com/contexts/air-cargo-manifest.json",
+  RAIL_CONSIGNMENT_NOTE: "https://chaindox.com/contexts/rail-consignment-note.json",
+  ROAD_CONSIGNMENT_NOTE: "https://chaindox.com/contexts/road-consignment-note.json",
+  DANGEROUS_GOODS_DECLARATION: "https://chaindox.com/contexts/dangerous-goods-declaration.json",
+  CONSIGNMENT_SECURITY_DECLARATION: "https://chaindox.com/contexts/consignment-security-declaration.json",
+  LICENSE_FOR_AGRICULTURAL_PRODUCTS: "https://chaindox.com/contexts/license-for-agricultural-products.json",
+  PHYTOSANITARY_CERTIFICATE: "https://chaindox.com/contexts/phytosanitary-certificate.json",
+  CUSTOMS_DECLARATION: "https://chaindox.com/contexts/customs-declaration.json",
+  CODEX: "https://chaindox.com/contexts/codex-generic-model-official-certificate.json",
+  INTERNATIONAL_VETERINARY_CERTIFICATE: "https://chaindox.com/contexts/international-veterinary-certificate.json",
+  CITES_PERMIT_CERTIFICATE: "https://chaindox.com/contexts/cites-permit-certificate.json",
+  CERTIFICATE_OF_INSPECTION_FOR_ORGANIC_PRODUCT: "https://chaindox.com/contexts/certificate-of-inspection-for-organic-product.json",
+  CUSTOMS_BOND: "https://chaindox.com/contexts/customs-bond.json",
+  ATA_CARNET: "https://chaindox.com/contexts/ata-carnet.json",
+  TIR_CARNET: "https://chaindox.com/contexts/tir-carnet.json",
+  TRANSIT_ACCOMPANYING_DOCUMENT: "https://chaindox.com/contexts/transit-accompanying-document.json",
+  ADVANCE_RULING_APPLICATION: "https://chaindox.com/contexts/advance-ruling-application.json"
+  // EMCS, EG, LC, PC, B/E
+
   // "INVOICE": "https://trustvc.io/context/invoice.json",
   // "CERTIFICATE_OF_ORIGIN": "https://trustvc.io/context/coo.json"
 }
