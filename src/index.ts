@@ -6,6 +6,7 @@ import {
   SUPPORTED_CHAINS,
   DocumentBuilder,
   W3CTransferableRecordsConfig,
+  W3CVerifiableDocumentConfig,
   isValid,
   verifyDocument,
 } from "@trustvc/trustvc";
@@ -30,6 +31,14 @@ if (!process.env.API_KEY) {
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
+const DATA_DIR = path.join(process.cwd(), 'data');
+const INDEX_FILE = path.join(DATA_DIR, 'status-index-counter.json');
+
+// ✅ ADD THIS: Ensure data directory exists when app starts
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  console.log(`📁 Created data directory: ${DATA_DIR}`);
+}
 
 // Security middlewares
 app.use(helmet());
@@ -37,7 +46,7 @@ app.use(helmet());
 // Rate limiter 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100, 
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -47,12 +56,12 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-API-Key, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
-  
+
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
-  
+
   next();
 });
 
@@ -266,6 +275,95 @@ app.post("/create/:documentId", authenticateApiKey, async (req: Request, res: Re
   }
 });
 
+async function getNextAvailableStatusIndex(): Promise<number> {
+  try {
+    // Read current index from file
+    let data = { nextIndex: 0 };
+
+    if (fs.existsSync(INDEX_FILE)) {
+      const fileContent = fs.readFileSync(INDEX_FILE, 'utf-8');
+      data = JSON.parse(fileContent);
+    }
+
+    const currentIndex = data.nextIndex;
+
+    // Increment and save
+    data.nextIndex = currentIndex + 1;
+    fs.writeFileSync(INDEX_FILE, JSON.stringify(data, null, 2));
+
+    console.log(`Assigned status list index: ${currentIndex}`);
+    return currentIndex;
+
+  } catch (error) {
+    console.error('Error managing status index:', error);
+    throw error;
+  }
+}
+
+app.post("/create-verifiable/:documentId", authenticateApiKey, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    let { documentId } = req.params;
+    documentId = documentId?.toUpperCase() || '';
+
+    if (!SUPPORTED_DOCUMENT[documentId]) {
+      throw new Error('Document not supported');
+    }
+
+    const { credentialSubject, holder, remarks } = req.body as {
+      credentialSubject: CredentialSubjects,
+      holder: string,
+      remarks: string
+    };
+
+    if (!process.env.DID_KEY_PAIRS) {
+      throw new Error('DID key pairs not found in environment variables');
+    }
+
+    const cleanedJsonString = process.env.DID_KEY_PAIRS.replace(/\\(?=["])/g, '');
+    const DID_KEY_PAIRS = JSON.parse(cleanedJsonString);
+
+    const expirationDate = new Date();
+    expirationDate.setMonth(expirationDate.getMonth() + 3);
+
+    const statusListIndex = await getNextAvailableStatusIndex();
+
+    const credentialStatus: W3CVerifiableDocumentConfig = {
+      url: "https://chaindox.com/credentials/status/1.json",
+      index: statusListIndex,
+      purpose: "revocation"
+    };
+
+    const baseDocument = {
+      "@context": [
+        SUPPORTED_DOCUMENT[documentId],
+        "https://trustvc.io/context/attachments-context.json",
+      ]
+    };
+
+    const document = new DocumentBuilder(baseDocument);
+
+    document.credentialStatus(credentialStatus);
+    document.credentialSubject(credentialSubject);
+    document.expirationDate(expirationDate);
+
+    document.renderMethod({
+      id: "https://decentralizedrenderer.netlify.app",
+      type: "EMBEDDED_RENDERER",
+      templateName: documentId
+    });
+
+    const signedW3CDocument = await document.sign(DID_KEY_PAIRS);
+
+    console.log(`Non-transferable document ${documentId} created with status index ${statusListIndex}`);
+
+    return res.json({
+      signedW3CDocument
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+})
 
 app.post("/verify", authenticateApiKey, async (req: Request, res: Response) => {
   try {
